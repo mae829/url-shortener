@@ -1,0 +1,17 @@
+extends ./inc/header
+
+block vars
+  -var bodyClass = 'home-page'
+
+block content
+  div
+    | URL: 
+    input#longurl(type='text',name='url')
+    input(type='button', value='Create short', onclick='makeShort();')
+
+
+  #result
+  
+  .clearfix
+block append body
+  include ./inc/footer.jade

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <title>{bodyClass} - URL Shortener</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <!--
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js')
+    -->
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="output.min.js"></script>
+  </head>
+  <body class="bulk-page">
+    <header id="header">
+      <nav>
+        <ul>
+          <li><a href="index.html">Single URL</a></li>
+          <li><a href="bulk-processor.html">Bulk Processor</a></li>
+        </ul>
+      </nav>
+      <div class="clearfix"></div>
+    </header>
+    <div id="output">
+      <div>URL: 
+        <textarea id="longurl" type="text" name="url"></textarea>
+        <input type="button" value="Create short" onclick="makeShort();">
+      </div>
+      <div id="result"></div>
+      <div class="clearfix"></div>
+    </div>
+    <div id="footer">
+      <div class="wrap">
+        <div id="copyright">
+          <p>©2015 Miguel Estrada</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

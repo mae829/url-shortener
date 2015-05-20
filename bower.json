@@ -1,0 +1,35 @@
+{
+  "name": "url-shortener",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mae829/url-shortener",
+  "authors": [
+    "Miguel A. Estrada <mae829@gmail.com>"
+  ],
+  "description": "URL Shortener using Google's url shortener API",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "source/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "modernizr": "~2.8.3",
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0"
+  },
+  "overrides": {
+    "fontawesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/*"
+      ]
+    }
+  }
+}

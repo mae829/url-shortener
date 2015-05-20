@@ -1,0 +1,30 @@
+@darkblue: #184b6e;
+@lightblue: #44a7cc;
+@red: #d5201e;
+@purple: #592992;
+@darkgrey: #3c4140;
+@lightgrey: #dfdfdf;
+@black: #000;
+@white: #fff;
+//@mobile: ~"screen and (max-width: 480px)";
+//@tablet: ~"screen and (max-width: 1024px)";
+//@desktop: ~"screen and (min-width: 481px)";
+@desktop: ~"screen and (min-device-width: 1025px)";
+@tablet: ~"screen and (min-device-width: 768px) and (max-device-width: 1024px)";
+@mobile: ~"screen and (max-device-width: 480px)";
+@portrait: ~"(orientation: portrait)";
+@landscape: ~"(orientation: landscape)";
+@fontfamily: "Raleway", Arial, sans-serif;
+
+@import "bootstrap";
+@import "font-awesome";
+
+@import url('http://fonts.googleapis.com/css?family=Raleway:300,400,700');
+
+body{
+  font-family: @fontfamily;
+}
+#footer{
+  margin-top: 100px;
+}
+input,textarea{border:1px solid #000;}
