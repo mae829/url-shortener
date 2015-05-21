@@ -2,7 +2,7 @@ block vars
 doctype html
 html.no-js(lang='en')
   head
-    title {bodyClass} - URL Shortener
+    title #{pageName} - URL Shortener
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -16,11 +16,14 @@ html.no-js(lang='en')
   body(class='#{bodyClass}')
     block body
       
-      header#header
-          nav
-            ul
-              li: a(href='index.html', class=(bodyClass == 'home-page' ? 'active-page' : '')) Single URL
-          div.clearfix
+      header#header.container
+        h1 URL Shortener
+        
+        nav
+          ul.nav.nav-pills
+            li(class=(bodyClass == 'single-page' ? 'active' : '')): a(href='index.html') Single URL
+            li(class=(bodyClass == 'bulk-page' ? 'active' : '')): a(href='bulk-processor.html') Bulk Processor
+        div.clearfix
 
-      #output
+      #content.container
         block content

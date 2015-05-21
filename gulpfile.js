@@ -2,7 +2,7 @@ var gulp 					= require('gulp'),
 		autoprefixer 	= require('gulp-autoprefixer'),
 		bower					= require('gulp-bower'),
 		concat 				= require('gulp-concat'),
-		gcmq 					= require('gulp-group-css-media-queries'),
+		//gcmq 					= require('gulp-group-css-media-queries'),
 		imagemin			= require('gulp-imagemin'),
 		jade 					= require('gulp-jade'),
 		jshint				= require('gulp-jshint'),
@@ -14,8 +14,9 @@ var gulp 					= require('gulp'),
 		uglify 				= require('gulp-uglify'),
 		util					= require('gulp-util'),
 		plumber				= require('gulp-plumber'),
-		size					=	require('gulp-size'),
-		browserSync 	= require('browser-sync');
+		size					= require('gulp-size'),
+		browserSync 	= require('browser-sync'),
+		cmq						= require('gulp-combine-media-queries');
 
 var onError = function (err) {
   console.log('An error occurred:', err.message);
@@ -42,11 +43,12 @@ gulp.task('css', function () {
 			]
 		}))
 		.pipe(autoprefixer())
-		.pipe(gcmq())
+		//.pipe(gcmq())
+		.pipe(cmq())
 		.pipe(minifyCSS())
 		.pipe(rename('style.css'))
 		.pipe(gulp.dest('build'))
-		.pipe(size())
+		.pipe(size( { showFiles: true } ))
 		//.pipe(notify("CSS ompilation complete."))
 		.pipe(browserSync.reload({ stream: true }))
 });
@@ -61,14 +63,15 @@ gulp.task('js', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter(require('jshint-stylish')))
 		.pipe(order([
+			'source/js/*.js',
 			'source/bower_components/jquery/dist/jquery.js',
-			'source/bower_components/modernizr/modernizr.js',
-			'source/js/*.js'
+			'source/bower_components/modernizr/modernizr.js'
+
 		]))
     .pipe( concat('output.min.js') )
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('build'))
-		.pipe(size())
+		.pipe(size( { showFiles: true } ))
 		//.pipe(notify("JS compilation complete."))
 		.pipe(browserSync.reload({ stream: true }))
 });
@@ -78,7 +81,7 @@ gulp.task('html', function() {
 		.pipe(plumber({ errorHandler: onError }))
     .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('build'))
-		.pipe(size())
+		.pipe(size( { showFiles: true } ))
 		//.pipe(notify("HTML compilation complete."))
 		.pipe(browserSync.reload({ stream: true }))
 });
@@ -92,7 +95,7 @@ gulp.task('images', function () {
 		}))
 		.pipe(gulp.dest('build/images'))
 		.pipe(browserSync.reload({ stream: true }))
-		.pipe(size());
+		.pipe(size( { showFiles: true } ));
 });
 
 gulp.task('watch', function () {
@@ -107,17 +110,10 @@ gulp.task('browser-sync', function() {
     server: {
       baseDir: 'build'
     },
-		tunnel: 'urlshortener',
-		browser: ['firefox', 'google chrome']
+		//tunnel: 'urlshortener',
+		browser: ['google chrome']
   });
 });
-
-/*gulp.task('connect', function() {
-  connect.server({
-    root: 'build',
-    livereload: true
-  });
-});*/
 
 gulp.task('default', ['html', 'js', 'css']);
 gulp.task('start', ['browser-sync', 'watch']);

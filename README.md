@@ -1,18 +1,15 @@
 # url-shortener
 URL Shortener web app using Google's URL Shortener API
 
-
 ## TODO
-### Single URL Shortener
-* Stylize page
-* Create full form for submission with long URL
-* Make sure URL begins with HTTP/HTTPS
-
-### Bulk URL Shortener
-* Create page
-* Textarea with multiple URLs separated by commas to test
+* Add more defined styling
 
 ## Update log
+* 5/21/2015
+  * Functioning bulk process (stable so far up to 400 URLs)
+  * Returns "error" if something is wrong with a URL
+  * Added styling from bootstrap
+
 * 5/20/2015
   * Functioning version of single URL shortener
 

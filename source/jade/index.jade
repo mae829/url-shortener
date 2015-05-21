@@ -1,16 +1,23 @@
 extends ./inc/header
 
 block vars
-  -var bodyClass = 'home-page'
+  -var bodyClass = 'single-page'
+  -var pageName = 'Single URL Shortener'
 
 block content
-  div
-    | URL: 
-    input#longurl(type='text',name='url')
-    input(type='button', value='Create short', onclick='makeShort();')
 
-
-  #result
+  form
+    div.form-group
+      label(for='longurl') URL
+      input#longurl.form-control(type='text',name='url',placeholder='enter single URL here')
+    button.btn.btn-primary(onclick='makeShort();return false;') Submit
+  
+  table.table.table-striped#output-table
+    thead
+      tr
+        th Long URL
+        th Short URL
+    tbody
   
   .clearfix
 block append body

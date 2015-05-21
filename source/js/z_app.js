@@ -1,56 +1,56 @@
 'use strict';
 
-/*function appendResults(text) {
-  var results = document.getElementById('results');
-  results.appendChild(document.createElement('p'));
-  results.appendChild(document.createTextNode(text));
-}
-
-function makeRequest() {
-  var request = gapi.client.urlshortener.url.insert({
-    'resource':{
-      'longUrl': 'http://culturatiresearch.com'
-    }
-  });
-  request.then(function(response) {
-    appendResults(response.result.shortUrl);
-  }, function(reason) {
-    console.log('Error: ' + reason.result.error.message);
-  });
-}
-
-function init() {
-  gapi.client.setApiKey('AIzaSyAYAKuR7ALW3EhRgjywI4f2WIfVMPIH4-M');
-  gapi.client.load('urlshortener', 'v1').then(makeRequest);
-}
-
-$(window).load(init);
-*/
-
 function makeShort(){
-  var longUrl = $('#longurl').val();
+  var longUrl = $('#longurl').val(),
+      str     = '';
+
+  $('#output-table tbody').html('');
+
   var request = gapi.client.urlshortener.url.insert({
     'resource': {
       'longUrl': longUrl
     }
   });
   request.execute(function(response){
-
     if(response.id != null){
-      str ='<b>Long URL:</b> '+longUrl+'<br>';
-      str +='<b>Short URL:</b> <a href=\"'+response.id+'\">'+response.id+'</a><br>';
-      $('#output').html(str);
+      var str = '<tr><td>'+response.longUrl+'</td>';
+      str += '<td><a href=\"'+response.id+'\">'+response.id+'</a></td></tr>';
+      $('#output-table tbody').append(str);
     }
     else{
-      console.log(response);
+      $('#output-table tbody').append('<tr><td>error</td><td>error</td></tr>');
     }
   });
 }
+function bulkShort(){
+  var longUrls  = $('#longurl').val(),
+      splitUrls = longUrls.split(/\n+/g),
+      str       = '';
 
+  $('#output-table tbody').html('');
+
+  for(var i=0; i < splitUrls.length; i++){
+    if(splitUrls[i] != ''){
+      var request = gapi.client.urlshortener.url.insert({
+        'resource': {
+          'longUrl': splitUrls[i]
+        }
+      });
+      request.execute(function(response){
+        if(response.id != null){
+          str = '<tr><td>'+response.longUrl+'</td>';
+          str += '<td><a href=\"'+response.id+'\">'+response.id+'</a></td></tr>';
+          $('#output-table tbody').append(str);
+        }
+        else{
+          $('#output-table tbody').append('<tr><td>error</td><td>error</td></tr>');
+        }
+      });
+    }
+  }
+}
 function init(){
-	gapi.client.setApiKey('AIzaSyAYAKuR7ALW3EhRgjywI4f2WIfVMPIH4-M'); //get your ownn Browser API KEY
+	gapi.client.setApiKey('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'); //get your ownn Browser API KEY for GOOGLE URL Shortener service
 	gapi.client.load('urlshortener', 'v1',function(){});
 }
-$(window).load(function(){
-  init();
-});
+$(window).load(init);
