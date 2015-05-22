@@ -18,7 +18,6 @@
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-concat": "^2.5.2",
     "gulp-group-css-media-queries": "^1.0.0",
-    "gulp-imagemin": "^2.2.1",
     "gulp-jade": "^1.0.0",
     "gulp-jshint": "^1.10.0",
     "gulp-less": "^3.0.3",

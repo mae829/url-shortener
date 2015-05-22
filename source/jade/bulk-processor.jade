@@ -6,19 +6,25 @@ block vars
 
 block content
 
-  form
+  form#bulk-url-form
     div.form-group
       label URLs
       textarea#longurl(class='form-control',name='url',rows='10',placeholder='enter ONE URL per line')
-    button.btn.btn-primary(onclick='bulkShort();return false;') Submit
+    button.btn.btn-primary Submit
   
-  table.table.table-striped#output-table
-    thead
+  
+  button#export.pull-right.btn.btn-primary(disabled='disabled',download='Processed-URLs.xls') Export
+  table.table.table-bordered.table-striped#output-table
+    thead.noExl
       tr
+        th #
         th Long URL
         th Short URL
     tbody
+      tr
+        td &nbsp;
+        td &nbsp;
+        td &nbsp;
   
-  .clearfix
 block append body
   include ./inc/footer.jade
