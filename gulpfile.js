@@ -2,8 +2,9 @@ var gulp 					= require('gulp'),
 		autoprefixer 	= require('gulp-autoprefixer'),
 		bower					= require('gulp-bower'),
 		concat 				= require('gulp-concat'),
+		cmq						= require('gulp-combine-media-queries'),
 		//gcmq 					= require('gulp-group-css-media-queries'),
-		imagemin			= require('gulp-imagemin'),
+		//imagemin			= require('gulp-imagemin'),
 		jade 					= require('gulp-jade'),
 		jshint				= require('gulp-jshint'),
 		less	 				= require('gulp-less'),
@@ -15,8 +16,7 @@ var gulp 					= require('gulp'),
 		util					= require('gulp-util'),
 		plumber				= require('gulp-plumber'),
 		size					= require('gulp-size'),
-		browserSync 	= require('browser-sync'),
-		cmq						= require('gulp-combine-media-queries');
+		browserSync 	= require('browser-sync');
 
 var onError = function (err) {
   console.log('An error occurred:', err.message);
@@ -24,7 +24,6 @@ var onError = function (err) {
 };
 
 var config = {
-	lessPath: './source/less',
 	bowerDir: 'source/bower_components' ,
 	jsFiles: [
 		'source/bower_components/jquery/dist/jquery.js',
@@ -33,8 +32,16 @@ var config = {
 	]
 }
 
+gulp.task('icons', function() { 
+	return gulp.src([
+			config.bowerDir + '/fontawesome/fonts/**.*',
+			config.bowerDir + '/bootstrap/fonts/**.*'
+		])
+		.pipe(gulp.dest('./build/fonts')); 
+});
+
 gulp.task('css', function () {
-	gulp.src('source/less/*.less')
+	return gulp.src('source/less/*.less')
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(less({
 			paths: [
@@ -54,21 +61,15 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function() {
-  gulp.src([
-		'source/bower_components/jquery/dist/jquery.js',
-		'source/bower_components/modernizr/modernizr.js',
+  return gulp.src([
+		config.bowerDir + '/jquery/dist/jquery.js',
+		config.bowerDir + '/modernizr/modernizr.js',
 		'source/js/*.js'
 	])
 		.pipe(plumber({ errorHandler: onError }))
 		.pipe(jshint())
 		.pipe(jshint.reporter(require('jshint-stylish')))
-		.pipe(order([
-			'source/js/*.js',
-			'source/bower_components/jquery/dist/jquery.js',
-			'source/bower_components/modernizr/modernizr.js'
-
-		]))
-    .pipe( concat('output.min.js') )
+    .pipe(concat('output.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('build'))
 		.pipe(size( { showFiles: true } ))
@@ -77,7 +78,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('html', function() {
-  gulp.src('source/jade/*.jade')
+  return gulp.src('source/jade/*.jade')
 		.pipe(plumber({ errorHandler: onError }))
     .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('build'))
@@ -110,10 +111,10 @@ gulp.task('browser-sync', function() {
     server: {
       baseDir: 'build'
     },
-		//tunnel: 'urlshortener',
-		browser: ['google chrome']
+		tunnel: 'urlshortener',
+		browser: ['google chrome','firefox']
   });
 });
 
-gulp.task('default', ['html', 'js', 'css']);
+gulp.task('default', ['html', 'js', 'css', 'icons']);
 gulp.task('start', ['browser-sync', 'watch']);

@@ -6,19 +6,21 @@ block vars
 
 block content
 
-  form
+  form#single-url-form
     div.form-group
       label(for='longurl') URL
       input#longurl.form-control(type='text',name='url',placeholder='enter single URL here')
-    button.btn.btn-primary(onclick='makeShort();return false;') Submit
+    button.btn.btn-primary Submit
   
-  table.table.table-striped#output-table
+  table.table.table-bordered.table-striped#output-table
     thead
       tr
         th Long URL
         th Short URL
     tbody
+      tr
+        td &nbsp;
+        td &nbsp;
   
-  .clearfix
 block append body
   include ./inc/footer.jade
