@@ -111,8 +111,8 @@ gulp.task('browser-sync', function() {
     server: {
       baseDir: 'build'
     },
-		//tunnel: 'urlshortener',
-		browser: ['google chrome']
+		tunnel: 'urlshortener',
+		browser: ['google chrome','firefox']
   });
 });
 

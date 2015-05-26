@@ -1,10 +1,14 @@
 # url-shortener
 URL Shortener web app using Google's URL Shortener API
+For a working sample, [click here]('http://samples.bleucellar.com/url-shortener')
 
 ## TODO
 * Fix file name preference in jQuery plugin table2excel
 
 ## Update log
+* 5/26/2015
+  * Cleaned up code
+
 * 5/22/2015
   * Added column for number of URL processed in bulk processor
   * Added styling for error entries

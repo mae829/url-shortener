@@ -67,7 +67,7 @@ function bulkShort(event){
   return false;
 }
 function init(){
-	gapi.client.setApiKey('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'); //get your ownn Browser API KEY for GOOGLE URL Shortener service
+	gapi.client.setApiKey('AIzaSyAYAKuR7ALW3EhRgjywI4f2WIfVMPIH4-M'); //get your ownn Browser API KEY for GOOGLE URL Shortener service
 	gapi.client.load('urlshortener', 'v1', function(){});
   $('#bulk-url-form').on('submit', bulkShort);
   $('#single-url-form').on('submit', makeShort);
