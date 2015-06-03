@@ -1,6 +1,6 @@
 # url-shortener
 URL Shortener web app using Google's URL Shortener API
-For a working sample, [click here]('http://samples.bleucellar.com/url-shortener')
+For a working sample, [click here](http://samples.bleucellar.com/url-shortener)
 
 ## TODO
 * Fix file name preference in jQuery plugin table2excel
