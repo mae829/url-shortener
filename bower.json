@@ -19,10 +19,10 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "modernizr": "~2.8.3",
+    "jquery": "~3.2.1",
+    "modernizr": "~3.5.0",
     "bootstrap": "~3.3.4",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.7.0"
   },
   "overrides": {
     "fontawesome": {
